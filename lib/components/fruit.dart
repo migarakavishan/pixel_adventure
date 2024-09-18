@@ -52,4 +52,5 @@ class Fruit extends SpriteAnimationComponent
       () => removeFromParent(),
     );
   }
+  
 }
