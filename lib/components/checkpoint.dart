@@ -57,7 +57,7 @@ class Checkpoint extends SpriteAnimationComponent
     Future.delayed(flagDuration, () {
       animation = SpriteAnimation.fromFrameData(
         game.images.fromCache(
-            'Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle) (64x64).png'),
+            'Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png'),
         SpriteAnimationData.sequenced(
           amount: 10,
           stepTime: 0.05,
