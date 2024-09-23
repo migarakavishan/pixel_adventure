@@ -17,7 +17,7 @@ enum PlayerState { idle, running, jumping, falling, hit, appearing }
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<PixelAdventure>, KeyboardHandler, CollisionCallbacks {
   String character;
-  Player({position, this.character = 'Ninja Frog'}) : super(position: position);
+  Player({position, this.character = 'Mask Dude'}) : super(position: position);
   final double stepTime = 0.05;
   late final SpriteAnimation idleAnimation;
   late final SpriteAnimation runningAnimation;
