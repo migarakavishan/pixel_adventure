@@ -33,24 +33,13 @@ class Level extends World with HasGameRef<PixelAdventure> {
   void _scrollingBackground() {
     final backgroundLayer = level.tileMap.getLayer('Background');
 
-    const tileSize = 64;
-
-    final numTileY = (game.size.y / tileSize).floor();
-    final numTileX = (game.size.x / tileSize).floor();
-
     if (backgroundLayer != null) {
       final backgroundColor =
           backgroundLayer.properties.getValue('BackgroundColor');
+      final backgroundTile = BackgroundTile(
+          color: backgroundColor ?? 'Gray', position: Vector2(0, 0));
 
-      for (double y = 0; y < game.size.y / numTileY; y++) {
-        for (double x = 0; x < numTileX; x++) {
-          final backgroundTile = BackgroundTile(
-              color: backgroundColor ?? 'Gray',
-              position: Vector2(x * tileSize, y * tileSize));
-
-          add(backgroundTile);
-        }
-      }
+      add(backgroundTile);
     }
   }
 
@@ -62,6 +51,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
         switch (spawnPoint.class_) {
           case 'Player':
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
+            player.scale.x = 1;
             add(player);
             break;
           case 'Fruit':
