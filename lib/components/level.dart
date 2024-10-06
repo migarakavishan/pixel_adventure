@@ -83,6 +83,10 @@ class Level extends World with HasGameRef<PixelAdventure> {
                 size: Vector2(spawnPoint.width, spawnPoint.height));
             add(checkpoint);
             break;
+
+          case 'Chicken':
+            //add in chicken
+            break;
           default:
         }
       }
