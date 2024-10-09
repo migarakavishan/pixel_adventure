@@ -1,13 +1,13 @@
 import 'dart:async';
-
 import 'package:flame/components.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
-enum State { idle, run, hit }
+enum ChickenState { idle, run, hit }
 
-class Chicken extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
+class Chicken extends SpriteAnimationGroupComponent<ChickenState> with HasGameRef<PixelAdventure> {
   final double offNeg;
   final double offPos;
+
   Chicken({
     super.position,
     super.size,
@@ -32,24 +32,26 @@ class Chicken extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
   void _loadAllAnimations() {
     _idleAnimation = _spriteAnimation('Idle', 13);
     _runAnimation = _spriteAnimation('Run', 14);
-    _hitAnimation = _spriteAnimation('Hit', 5)..loop = false;
+    _hitAnimation = _spriteAnimation('Hit', 15)..loop = false;
 
+    // Set animations map for different states
     animations = {
-      State.idle: _idleAnimation,
-      State.run: _runAnimation,
-      State.hit: _hitAnimation,
+      ChickenState.idle: _idleAnimation,
+      ChickenState.run: _runAnimation,
+      ChickenState.hit: _hitAnimation,
     };
 
-    current = State.idle;
+    current = ChickenState.idle; // Set initial state
   }
 
   SpriteAnimation _spriteAnimation(String state, int amount) {
     return SpriteAnimation.fromFrameData(
-        game.images.fromCache('Enemies/Chicken/$state (32x34).png'),
-        SpriteAnimationData.sequenced(
-          amount: amount,
-          stepTime: stepTime,
-          textureSize: textureSize,
-        ));
+      game.images.fromCache('Enemies/Chicken/$state (32x34).png'),
+      SpriteAnimationData.sequenced(
+        amount: amount,
+        stepTime: stepTime,
+        textureSize: textureSize,
+      ),
+    );
   }
 }
